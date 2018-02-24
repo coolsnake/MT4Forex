@@ -1,0 +1,42 @@
+#ifndef MT4DATATYPE_H_INCLUDED
+#define MT4DATATYPE_H_INCLUDED
+
+#define MAX_AUTH_LENGTH 48
+
+extern "C" {
+#include <openssl/ssl.h>
+};
+
+struct auth_pair
+{
+    char username[20];   //login user name
+    char password[20];   // login password
+    long EAID;
+};
+
+struct Order
+{
+    char symbol[16];
+    int cmd;   // buy or sell
+    int slippage;
+    int operate; // open or close
+    int ticket; // ticket number
+    double volume;  // the percent of buying volume
+    double price;  // the contract price
+    double stoploss; //
+    double takeprofit;
+};
+
+struct auth_keep_alive
+{
+    char auth[16];
+};
+
+struct pend_socket
+{
+    SSL *ssl;
+    int sock;
+    int create_time;
+};
+
+#endif // MT4DATATYPE_H_INCLUDED
